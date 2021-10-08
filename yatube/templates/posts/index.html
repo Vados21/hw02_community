@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
 {% block content %}
-<title>Последние обновления на сайте {{ post.title }}</title>
+{% block title %}  Последние обновления на сайте {{ post.title }}  {% endblock %}
 {% for post in posts %}
   <ul>
     <li>
@@ -9,11 +9,15 @@
     <li>
       Дата публикации: {{ post.pub_date|date:"d E Y" }}
     </li>
+    <li>
+      Описание группы: {{ group.desctiption }}
+    </li>
   </ul>
-  <p>{{ post.text }}</p>    
-  {% if not post.group %}
-    <a href="">все записи группы</a>
-    {% if not forloop.last %}<hr>{% endif %}
+  <p>{{ post.text|linebreaksbr }}</p>    
+  {% if post.group.slug != Null %}
+      <a href="{% url 'Posts:group_list' post.group.slug %}">все записи группы</a>
+  {% endif%}  
+  {% if not forloop.last %}<hr>
   {% endif %}
 {% endfor %} 
 {% endblock %}
