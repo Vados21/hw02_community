@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
 {% block content %}
-{% block title %}Последние обновления на сайте {{ post.title }}{% endblock %}
+<h1>{% block title %}Последние обновления на сайте{% endblock %}</h1>
 {% for post in posts %}
   <ul>
     <li>
@@ -8,9 +8,6 @@
     </li>
     <li>
       Дата публикации: {{ post.pub_date|date:"d E Y" }}
-    </li>
-    <li>
-      Описание группы: {{ group.desctiption }}
     </li>
   </ul>
   <p>{{ post.text|linebreaksbr }}</p>    
